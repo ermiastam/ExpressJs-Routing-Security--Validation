@@ -1,0 +1,57 @@
+<body>
+<h1><%= title %></h1>
+
+    <form name="form1" method="POST" action="/newsletter">
+    
+    <table>
+        <tr>
+        <td><input type="hidden" name="_csrf" value=<%= csrftoken %>></td>
+        </tr>
+        <tr>
+        <td>First name</td>
+        <td><input type="text" name="fname" ><td>
+            <%if(error.length > 0) {%>
+            <%for(let i = 0; i < error.length; i++){
+                if(error[i].param == 'fname'){
+                %>
+                <%=error[i].msg %>
+            <%}}}%>
+
+        </td></td>
+        
+        
+       
+        </tr>
+        <tr>
+        <td>last name</td>
+        <td><input type="text" name="lname" ><td>
+            <%if(error.length > 0) {%>
+            <%for(let i = 0; i < error.length; i++){
+                if(error[i].param == 'lname'){
+                %>
+                <%=error[i].msg %>
+            <%}}}%>
+
+        </td></td>
+        </tr>
+        <td>email</td>
+        <td><input type="text" name="email" ><td>
+            <%if(error.length > 0) {%>
+            <%for(let i = 0; i < error.length; i++){
+                if(error[i].param == 'email'){
+                %>
+                <%=error[i].msg %>
+            <%}}}%>
+
+        </td></td>
+        </tr>
+        <tr>
+        <td colspan="2"><input type="submit" value="Subscribe" ></td>
+        </tr>
+        
+    </table>
+    </form>   
+  
+    
+
+</body>
