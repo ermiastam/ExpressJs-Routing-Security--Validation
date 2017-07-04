@@ -28,20 +28,7 @@ router.route('*')
 });
 
 var confirm = function(req, res, next) {
-    //var subscriber_email = req.body.email;
-    //res.locals = {email: subscriber_email} 
-//   var body = '';
-//     filePath = __dirname + '/public/userdata.txt';
-//     // req.appendFile('data', function(data) {
-//     //     body += data;
-//     // });
-// fs.createWriteStream(filePath).write("hello");
-//      req.on('end', function (){
-//         fs.appendFile(filePath, subscriber_email, function() {
-//             respond.end();
-//         });
-//     });
-    //   res.render('confirmation');
+
     req.assert('fname','first name is required').notEmpty();
     req.assert('lname','last name is required').notEmpty();
     req.assert('email',' valid email is required').notEmpty().isEmail();
@@ -52,10 +39,11 @@ var confirm = function(req, res, next) {
         res.render('subscriber',{title:'subscribe', error:errors});
     }
     else{
-        var logStream = fs.createWriteStream(__dirname+'log.txt',{'flags':'a'});
-        logStream.write("hello\n");
+        var logStream = fs.createWriteStream('./subscribers.txt',{'flags':'a'});
+        console.log(__dirname);
+        logStream.write(req.body.email+"\n");
         logStream.end();
-        console.log(req.body.email);
+
     res.redirect('/newsletter/thankyou?email='+req.body.email);
     }
 }
